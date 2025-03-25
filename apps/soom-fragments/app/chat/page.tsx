@@ -1009,24 +1009,18 @@ export default function Home() {
               content: [{ type: 'text', text: '' }],
             })
 
-            // Process the stream
-            const decoder = new TextDecoder()
-            let accumulatedResponse = ''
+            const readStream = async () => {
+              if (!reader) return
 
-            function readStream() {
-              reader.read().then(({ done, value }) => {
-                if (done) return
+              const { done, value } = await reader.read()
+              if (done) return
 
-                const chunk = decoder.decode(value, { stream: true })
-                accumulatedResponse += chunk
+              const chunk = new TextDecoder().decode(value, { stream: true })
+              // Process chunk and update state as needed
 
-                // Update the message with accumulated text
-                setSearchTabMessage({
-                  content: [{ type: 'text', text: accumulatedResponse }],
-                })
-
+              if (!done) {
                 readStream()
-              })
+              }
             }
 
             readStream()
