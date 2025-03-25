@@ -2,7 +2,7 @@ declare namespace NodeJS {
   export interface ProcessEnv {
     NEXT_PUBLIC_WEBAPP_URL?: string;
     NEXT_PUBLIC_MARKETING_URL?: string;
-    NEXT_PRIVATE_INTERNAL_WEBAPP_URL?:string;
+    NEXT_PRIVATE_INTERNAL_WEBAPP_URL?: string;
 
     NEXT_PRIVATE_DATABASE_URL: string;
 
@@ -19,5 +19,7 @@ declare namespace NodeJS {
     NEXT_PRIVATE_OIDC_CLIENT_SECRET: string;
     NEXT_PRIVATE_OIDC_ALLOW_SIGNUP?: string;
     NEXT_PRIVATE_OIDC_SKIP_VERIFY?: string;
+
+    SHOPIFY_INTEGRATION_API_KEY?: string;
   }
 }

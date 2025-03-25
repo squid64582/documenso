@@ -5,10 +5,10 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 222.2 47.4% 11.2%;
+    --foreground: 240 10% 3.9%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 240 5% 96%;
+    --muted-foreground: 240 4% 46%;
 
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 47.4% 11.2%;
@@ -25,22 +25,22 @@
     --widget: 0 0% 97%;
     --widget-foreground: 0 0% 95%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
+    --border: 240 6% 90%;
+    --input: 240 6% 90%;
 
-    --primary: 95.08 71.08% 67.45%;
+    --primary: 346.8 77.2% 49.8%;
     --primary-foreground: 95.08 71.08% 10%;
 
-    --secondary: 210 40% 96.1%;
+    --secondary: 240 5% 96%;
     --secondary-foreground: 222.2 47.4% 11.2%;
 
-    --accent: 210 40% 96.1%;
+    --accent: 240 5% 96%;
     --accent-foreground: 222.2 47.4% 11.2%;
 
     --destructive: 0 100% 50%;
     --destructive-foreground: 210 40% 98%;
 
-    --ring: 95.08 71.08% 67.45%;
+    --ring: 346.8 77.2% 49.8%;
 
     --radius: 0.5rem;
 
@@ -55,18 +55,18 @@
     --signer-yellow: 51 100% 43%;
     --signer-pink: 313 65% 57%;
 
-    /* Base - Neutral */
-    --new-neutral-50: 0, 0%, 96%;
-    --new-neutral-100: 0, 0%, 91%;
-    --new-neutral-200: 0, 0%, 82%;
-    --new-neutral-300: 0, 0%, 69%;
-    --new-neutral-400: 0, 0%, 53%;
-    --new-neutral-500: 0, 0%, 43%;
-    --new-neutral-600: 0, 0%, 36%;
-    --new-neutral-700: 0, 0%, 31%;
-    --new-neutral-800: 0, 0%, 27%;
-    --new-neutral-900: 0, 0%, 24%;
-    --new-neutral-950: 0, 0%, 9%;
+    /* Base - Neutral (Zinc) */
+    --new-neutral-50: 240, 5%, 96%;    /* zinc-50 */
+    --new-neutral-100: 240, 6%, 90%;   /* zinc-100 */
+    --new-neutral-200: 240, 5%, 84%;   /* zinc-200 */
+    --new-neutral-300: 240, 4%, 70%;   /* zinc-300 */
+    --new-neutral-400: 240, 5%, 54%;   /* zinc-400 */
+    --new-neutral-500: 240, 4%, 46%;   /* zinc-500 */
+    --new-neutral-600: 240, 5%, 34%;   /* zinc-600 */
+    --new-neutral-700: 240, 5%, 26%;   /* zinc-700 */
+    --new-neutral-800: 240, 4%, 16%;   /* zinc-800 */
+    --new-neutral-900: 240, 6%, 10%;   /* zinc-900 */
+    --new-neutral-950: 240, 10%, 4%;   /* zinc-950 */
 
     /* Base - White */
     --new-white-50: 0, 0%, 5%;
@@ -142,8 +142,8 @@
     --background: 0 0% 14.9%;
     --foreground: 0 0% 97%;
 
-    --muted: 0 0% 23.4%;
-    --muted-foreground: 0 0% 85%;
+    --muted: 240 5% 26%;
+    --muted-foreground: 240 5% 84%;
 
     --popover: 0 0% 14.9%;
     --popover-foreground: 0 0% 90%;
@@ -156,18 +156,18 @@
     --widget: 0 0% 14.9%;
     --widget-foreground: 0 0% 18%;
 
-    --border: 0 0% 27.9%;
-    --input: 0 0% 27.9%;
+    --border: 240 4% 16%;
+    --input: 240 4% 16%;
 
     --field-border: 214.3 31.8% 91.4%;
 
     --primary: 95.08 71.08% 67.45%;
     --primary-foreground: 95.08 71.08% 10%;
 
-    --secondary: 0 0% 23.4%;
+    --secondary: 240 5% 26%;
     --secondary-foreground: 95.08 71.08% 67.45%;
 
-    --accent: 0 0% 27.9%;
+    --accent: 240 4% 16%;
     --accent-foreground: 95.08 71.08% 67.45%;
 
     --destructive: 0 87% 62%;

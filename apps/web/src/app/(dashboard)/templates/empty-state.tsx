@@ -1,13 +1,13 @@
 import { Trans } from '@lingui/macro';
-import { Bird } from 'lucide-react';
+import { RiRainbowLine } from '@remixicon/react';
 
 export const EmptyTemplateState = () => {
   return (
     <div className="text-muted-foreground/60 flex h-96 flex-col items-center justify-center gap-y-4">
-      <Bird className="h-12 w-12" strokeWidth={1.5} />
+      <RiRainbowLine className="h-12 w-12" strokeWidth={1.5} />
 
       <div className="text-center">
-        <h3 className="text-lg font-semibold">
+        <h3 className="text-lg font-medium">
           <Trans>We're all empty</Trans>
         </h3>
 

@@ -6,6 +6,7 @@ import type {
 import type { TDocumentEmailSettings } from '@documenso/lib/types/document-email';
 import type { TDocumentFormValues } from '@documenso/lib/types/document-form-values';
 import type { TFieldMetaNotOptionalSchema } from '@documenso/lib/types/field-meta';
+import type { TShopData } from '@documenso/lib/types/shop-data';
 
 /**
  * Global types for Prisma.Json instances.
@@ -19,6 +20,8 @@ declare global {
     type RecipientAuthOptions = TRecipientAuthOptions;
 
     type FieldMeta = TFieldMetaNotOptionalSchema;
+
+    type ShopData = TShopData;
   }
 }
 

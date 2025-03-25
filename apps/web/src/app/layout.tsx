@@ -2,6 +2,7 @@ import { Suspense } from 'react';
 
 import { Caveat, Inter } from 'next/font/google';
 
+import { GeistSans } from 'geist/font/sans';
 import { AxiomWebVitals } from 'next-axiom';
 import { PublicEnvScript } from 'next-runtime-env';
 
@@ -11,7 +12,6 @@ import { setupI18nSSR } from '@documenso/lib/client-only/providers/i18n.server';
 import { IS_APP_WEB_I18N_ENABLED, NEXT_PUBLIC_WEBAPP_URL } from '@documenso/lib/constants/app';
 import { getServerComponentAllFlags } from '@documenso/lib/server-only/feature-flags/get-server-component-feature-flag';
 import { TrpcProvider } from '@documenso/trpc/react';
-import { cn } from '@documenso/ui/lib/utils';
 import { Toaster } from '@documenso/ui/primitives/toaster';
 import { TooltipProvider } from '@documenso/ui/primitives/tooltip';
 
@@ -26,8 +26,8 @@ const fontCaveat = Caveat({ subsets: ['latin'], variable: '--font-signature' });
 export function generateMetadata() {
   return {
     title: {
-      template: '%s - Documenso',
-      default: 'Documenso',
+      template: '%s - Soom',
+      default: 'Soom',
     },
     description:
       'Join Documenso, the open signing infrastructure, and get a 10x better signing experience. Pricing starts at $30/mo. forever! Sign in now and enjoy a faster, smarter, and more beautiful document signing process. Integrates with your favorite tools, customizable, and expandable. Support our mission and become a part of our open-source community.',
@@ -59,11 +59,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const { i18n, lang, locales } = await setupI18nSSR();
 
   return (
-    <html
-      lang={lang}
-      className={cn(fontInter.variable, fontCaveat.variable)}
-      suppressHydrationWarning
-    >
+    <html lang={lang} className={GeistSans.className} suppressHydrationWarning>
       <head>
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />

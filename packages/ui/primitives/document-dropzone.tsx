@@ -80,7 +80,7 @@ export const DocumentDropzone = ({
       <Card
         role="button"
         className={cn(
-          'focus-visible:ring-ring ring-offset-background group flex flex-1 cursor-pointer flex-col items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
+          'focus-visible:ring-ring ring-offset-background focus-visible:ring-offset group flex flex-1 cursor-pointer flex-col items-center justify-center focus-visible:outline-none focus-visible:ring',
           className,
         )}
         gradient={!disabled}
@@ -125,31 +125,31 @@ export const DocumentDropzone = ({
             // Non Disabled State
             <div className="flex">
               <motion.div
-                className="border-muted-foreground/20 group-hover:border-documenso/80 dark:bg-muted/80 a z-10 flex aspect-[3/4] w-24 origin-top-right -rotate-[22deg] flex-col gap-y-1 rounded-lg border bg-white/80 px-2 py-4 backdrop-blur-sm"
+                className="border-muted-foreground/20 dark:bg-muted/80 a z-10 flex aspect-[3/4] w-24 origin-top-right -rotate-[22deg] flex-col gap-y-1 rounded-lg border bg-white/80 px-2 py-4 backdrop-blur-sm group-hover:border-rose-600/80"
                 variants={DocumentDropzoneCardLeftVariants}
               >
-                <div className="bg-muted-foreground/20 group-hover:bg-documenso h-2 w-full rounded-[2px]" />
-                <div className="bg-muted-foreground/20 group-hover:bg-documenso h-2 w-5/6 rounded-[2px]" />
-                <div className="bg-muted-foreground/20 group-hover:bg-documenso h-2 w-full rounded-[2px]" />
+                <div className="bg-muted-foreground/20 h-2 w-full rounded-[2px] group-hover:bg-rose-500" />
+                <div className="bg-muted-foreground/20 h-2 w-5/6 rounded-[2px] group-hover:bg-rose-500" />
+                <div className="bg-muted-foreground/20 h-2 w-full rounded-[2px] group-hover:bg-rose-400" />
               </motion.div>
 
               <motion.div
-                className="border-muted-foreground/20 group-hover:border-documenso/80 dark:bg-muted/80 z-20 flex aspect-[3/4] w-24 flex-col items-center justify-center gap-y-1 rounded-lg border bg-white/80 px-2 py-4 backdrop-blur-sm"
+                className="border-muted-foreground/20 dark:bg-muted/80 z-20 flex aspect-[3/4] w-24 flex-col items-center justify-center gap-y-1 rounded-lg border bg-white/80 px-2 py-4 backdrop-blur-sm group-hover:border-rose-600/80"
                 variants={DocumentDropzoneCardCenterVariants}
               >
                 <Plus
                   strokeWidth="2px"
-                  className="text-muted-foreground/20 group-hover:text-documenso h-12 w-12"
+                  className="text-muted-foreground/20 h-10 w-10 group-hover:text-rose-500"
                 />
               </motion.div>
 
               <motion.div
-                className="border-muted-foreground/20 group-hover:border-documenso/80 dark:bg-muted/80 z-10 flex aspect-[3/4] w-24 origin-top-left rotate-[22deg] flex-col gap-y-1 rounded-lg border bg-white/80 px-2 py-4 backdrop-blur-sm"
+                className="border-muted-foreground/20 dark:bg-muted/80 z-10 flex aspect-[3/4] w-24 origin-top-left rotate-[22deg] flex-col gap-y-1 rounded-lg border bg-white/80 px-2 py-4 backdrop-blur-sm group-hover:border-rose-600/80"
                 variants={DocumentDropzoneCardRightVariants}
               >
-                <div className="bg-muted-foreground/20 group-hover:bg-documenso h-2 w-full rounded-[2px]" />
-                <div className="bg-muted-foreground/20 group-hover:bg-documenso h-2 w-5/6 rounded-[2px]" />
-                <div className="bg-muted-foreground/20 group-hover:bg-documenso h-2 w-full rounded-[2px]" />
+                <div className="bg-muted-foreground/20 h-2 w-full rounded-[2px] group-hover:bg-rose-400" />
+                <div className="bg-muted-foreground/20 h-2 w-5/6 rounded-[2px] group-hover:bg-rose-500" />
+                <div className="bg-muted-foreground/20 h-2 w-full rounded-[2px] group-hover:bg-rose-500" />
               </motion.div>
             </div>
           )}

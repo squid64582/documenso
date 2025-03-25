@@ -48,6 +48,7 @@ const config = {
     NEXT_PUBLIC_PROJECT: 'web',
     FONT_CAVEAT_URI: `data:font/ttf;base64,${FONT_CAVEAT_BYTES.toString('base64')}`,
     FONT_NOTO_SANS_URI: `data:font/ttf;base64,${FONT_NOTO_SANS_BYTES.toString('base64')}`,
+    GADGET_API_KEY: process.env.GADGET_API_KEY,
   },
   modularizeImports: {
     'lucide-react': {
@@ -55,7 +56,7 @@ const config = {
     },
   },
   webpack: (config, { isServer }) => {
-    // fixes: Module not found: Can’t resolve ‘../build/Release/canvas.node’
+    // fixes: Module not found: Can't resolve 'build/Release/canvas.node'
     if (isServer) {
       config.resolve.alias.canvas = false;
     }

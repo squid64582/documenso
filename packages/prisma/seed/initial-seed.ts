@@ -39,11 +39,11 @@ export const seedDatabase = async () => {
 
   const adminUser = await prisma.user.upsert({
     where: {
-      email: 'admin@documenso.com',
+      email: 'chris@soom.io',
     },
     create: {
       name: 'Admin User',
-      email: 'admin@documenso.com',
+      email: 'chris@soom.io',
       emailVerified: new Date(),
       password: hashSync('password'),
       roles: [Role.USER, Role.ADMIN],

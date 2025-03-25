@@ -45,7 +45,7 @@ export default async function AuthenticatedDashboardLayout({
 
         <Header user={user} teams={teams} />
 
-        <main className="mt-8 pb-8 md:mt-12 md:pb-12">{children}</main>
+        <main className="mt-4 pb-8 md:mt-4 md:pb-12">{children}</main>
 
         <RefreshOnFocus />
       </LimitsProvider>

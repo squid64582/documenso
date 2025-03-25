@@ -8,6 +8,7 @@ generator client {
 
 generator json {
   provider = "prisma-json-types-generator"
+  output   = "./types"
 }
 
 generator zod {
@@ -64,15 +65,16 @@ model User {
   twoFactorBackupCodes String?
   url                  String?              @unique
 
-  profile            UserProfile?
-  verificationTokens VerificationToken[]
-  apiTokens          ApiToken[]
-  templates          Template[]
-  securityAuditLogs  UserSecurityAuditLog[]
-  webhooks           Webhook[]
-  siteSettings       SiteSettings[]
-  passkeys           Passkey[]
-  avatarImage        AvatarImage?           @relation(fields: [avatarImageId], references: [id], onDelete: SetNull)
+  profile             UserProfile?
+  verificationTokens  VerificationToken[]
+  apiTokens           ApiToken[]
+  templates           Template[]
+  securityAuditLogs   UserSecurityAuditLog[]
+  webhooks            Webhook[]
+  siteSettings        SiteSettings[]
+  passkeys            Passkey[]
+  avatarImage         AvatarImage?           @relation(fields: [avatarImageId], references: [id], onDelete: SetNull)
+  LandingPageTemplate LandingPageTemplate[]
 
   @@index([email])
 }
@@ -574,10 +576,11 @@ model Team {
   owner        User          @relation(fields: [ownerUserId], references: [id], onDelete: Cascade)
   subscription Subscription?
 
-  documents Document[]
-  templates Template[]
-  apiTokens ApiToken[]
-  webhooks  Webhook[]
+  documents           Document[]
+  templates           Template[]
+  apiTokens           ApiToken[]
+  webhooks            Webhook[]
+  LandingPageTemplate LandingPageTemplate[]
 }
 
 model TeamPending {
@@ -779,4 +782,167 @@ model AvatarImage {
 
   team Team[]
   user User[]
+}
+
+model ShopInstallation {
+  id               Int      @id @default(autoincrement())
+  shopId           String   @unique @map("shop_id")
+  shopName         String?  @map("shop_name")
+  shopDomain       String   @map("shop_domain")
+  myshopifyDomain  String   @map("myshopify_domain")
+  email            String?
+  neonSystemUserId String?  @map("neon_system_user_id")
+  installedAt      DateTime @map("installed_at")
+  data             Json
+  createdAt        DateTime @default(now()) @map("created_at")
+  updatedAt        DateTime @updatedAt @map("updated_at")
+
+  // Optional relation to BrandKit
+  brandKitId Int?
+  brandKit   BrandKit? @relation(fields: [brandKitId], references: [id])
+
+  @@map("shop_installations")
+}
+
+model BrandKit {
+  id        Int      @id @default(autoincrement())
+  brandUrl  String
+  status    String   @default("processing") // processing, completed, failed
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  // Relations
+  brandIdentity            BrandIdentity?
+  visualIdentity           VisualIdentity?
+  marketResearch           MarketResearch?
+  strategicRecommendations StrategicRecommendations?
+  taskOutputs              TaskOutput[]
+  shopInstallations        ShopInstallation[]
+
+  @@map("brand_kits")
+}
+
+model BrandIdentity {
+  id                  Int      @id @default(autoincrement())
+  brandKitId          Int      @unique
+  brandName           String
+  brandDescription    String?
+  missionStatement    String?
+  visionStatement     String?
+  coreValues          Json? // Array of objects with name, description, icon, color
+  toneOfVoice         Json? // Object with primary, secondary, do, dont properties
+  messagingGuidelines String?
+  createdAt           DateTime @default(now())
+
+  // Relation
+  brandKit BrandKit @relation(fields: [brandKitId], references: [id], onDelete: Cascade)
+
+  @@map("brand_identity")
+}
+
+model VisualIdentity {
+  id              Int      @id @default(autoincrement())
+  brandKitId      Int      @unique
+  colorPalette    Json? // Array of objects with name, hex, type
+  typography      Json? // Object with primary, secondary, headings, body fonts
+  logoDescription String?
+  imageryStyle    String?
+  createdAt       DateTime @default(now())
+
+  // Relation
+  brandKit BrandKit @relation(fields: [brandKitId], references: [id], onDelete: Cascade)
+
+  @@map("visual_identity")
+}
+
+model MarketResearch {
+  id             Int      @id @default(autoincrement())
+  brandKitId     Int      @unique
+  industry       String?
+  targetAudience Json? // Object with primary, secondary, icon, color
+  marketPosition Json? // Object with segment, focus, icon, color
+  competitors    Json? // Array of objects with name, color, description, strengths, weaknesses
+  comparisonData Json? // Array of objects with subject and competitor scores
+  createdAt      DateTime @default(now())
+
+  // Relation
+  brandKit BrandKit @relation(fields: [brandKitId], references: [id], onDelete: Cascade)
+
+  @@map("market_research")
+}
+
+model StrategicRecommendations {
+  id                  Int      @id @default(autoincrement())
+  brandKitId          Int      @unique
+  positioningElements Json? // Array of objects with name, value, color
+  positioningInsights Json? // Array of objects with title, icon, color, description
+  recommendations     Json? // Array of objects with title, description, icon, priority
+  conclusion          String?
+  createdAt           DateTime @default(now())
+
+  // Relation
+  brandKit BrandKit @relation(fields: [brandKitId], references: [id], onDelete: Cascade)
+
+  @@map("strategic_recommendations")
+}
+
+model TaskOutput {
+  id         Int      @id @default(autoincrement())
+  brandKitId Int
+  taskName   String
+  output     Json
+  createdAt  DateTime @default(now())
+
+  // Relation
+  brandKit BrandKit @relation(fields: [brandKitId], references: [id], onDelete: Cascade)
+
+  @@map("task_outputs")
+}
+
+enum LandingPageTemplateStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+enum LandingPageTemplateType {
+  COMPONENT
+  FULL_PAGE
+}
+
+model LandingPageTemplate {
+  id              Int                       @id @default(autoincrement())
+  externalId      String?
+  name            String
+  description     String?
+  thumbnailUrl    String?
+  componentCode   String                    @db.Text // Actual React component code
+  cssCode         String?                   @db.Text // Optional CSS code
+  previewImageUrl String? // Screenshot or preview image
+  type            LandingPageTemplateType   @default(FULL_PAGE)
+  category        String?
+  tags            String[]
+  status          LandingPageTemplateStatus @default(DRAFT)
+
+  // Configuration options that can be passed to the component
+  configSchema  Json? // JSON Schema for configuration options
+  defaultConfig Json? // Default configuration values
+
+  userId Int
+  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  teamId Int?
+  team   Team? @relation(fields: [teamId], references: [id], onDelete: SetNull)
+
+  shopId   String?
+  metadata Json?
+  version  Int     @default(1)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  @@index([userId])
+  @@index([teamId])
+  @@index([status])
+  @@index([category])
 }
